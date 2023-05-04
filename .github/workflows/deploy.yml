@@ -1,4 +1,4 @@
-name: Deploy
+name: build and deploy
 on:
   workflow_dispatch: {}
   push:
@@ -8,6 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:
@@ -15,8 +16,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - uses: pnpm/action-setup@v2
         with:
@@ -24,16 +23,11 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: latest
           cache: pnpm
-  
-      - name: Install Dependencies
-        run: pnpm i
-  
-      - name: Build Packages
-        run: pnpm run build
         
       - uses: actions/configure-pages@v2
+      - run: pnpm i --frozen-lockfile && pnpm vitepress build --base /${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v1
         with:
           path: .vitepress/dist
