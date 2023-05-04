@@ -11,8 +11,8 @@ async function config() {
         "link",
         {
           rel: "icon",
-          type: "image/svg",
-          href: "/horse.svg",
+          // type: "image/svg",
+          href: "https://api.iconify.design/basil:pulse-outline.svg?color=%238ec4f5",
         },
       ],
       [
@@ -41,8 +41,8 @@ async function config() {
     lastUpdated: false,
     themeConfig: {
       // repo: "clark-cui/homeSite",
-      logo: "/horse.svg",
-      avator:'http://cybzzz.top/assets/image/avatar.jpg',
+      logo: "https://api.iconify.design/svg-spinners:wind-toy.svg?color=%238ec4f5",
+      avator:'https://cybzzz.top/assets/image/avatar.jpg',
       search: {
         provider: 'local'
       },
