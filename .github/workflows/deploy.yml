@@ -21,13 +21,19 @@ jobs:
         with:
           node-version: 16
           cache: npm
-      - run: npm ci
-      - name: Build
-        run: npm run docs:build
+      - name: Install pnpm
+        run: npm i pnpm -g
+  
+      - name: Install Dependencies
+        run: pnpm i # 安装依赖
+  
+      - name: Build Packages
+        run: pnpm run build #  打包文件
+        
       - uses: actions/configure-pages@v2
       - uses: actions/upload-pages-artifact@v1
         with:
-          path: docs/.vitepress/dist
+          path: .vitepress/dist
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v1
