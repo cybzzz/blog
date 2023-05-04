@@ -4,7 +4,7 @@
     <a href="https://vitepress.dev/" target="_blank" title="作者"
       >VitePress</a
     >
-    | Copyright © 2019-{{ date }} | MIT License
+    | Copyright © 2022-{{ date }} | MIT License
   </footer>
 </template>
 <script lang="ts" setup>

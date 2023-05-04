@@ -3,6 +3,7 @@ import Archives from "./components/Archives.vue";
 import Tags from "./components/Tags.vue";
 import MyLayout from "./components/MyLayout.vue";
 import "./custom.css";
+import 'uno.css';
 
 export default {
   ...DefaultTheme,

@@ -11,6 +11,7 @@
     "globby": "11.0.4",
     "gray-matter": "^4.0.3",
     "markdown-it": "^13.0.1",
+    "unocss": "^0.51.8",
     "vitepress": "1.0.0-alpha.73"
   },
   "scripts": {
