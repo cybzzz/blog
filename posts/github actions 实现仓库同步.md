@@ -7,14 +7,15 @@ tags:
 ---
 
 ## 需求背景
-最近在调研笔记工具，决定尝试一下 [Obsidian](https://obsidian.md/)，功能比较全面而且可定制性比较强，至于同步方案决定使用 Github。
-既然如此，就想把笔记和博客放在一个仓库里，这样写的时候不用切换仓库了。
+最近在调研笔记工具，决定尝试一下 [Obsidian](https://obsidian.md/)，功能比较全面而且可定制性比较强，至于同步方案决定使用 Github。  
+既然如此，就想把笔记和博客放在一个仓库里，这样写的时候不用切换仓库了。  
 初步想法是同步 Obsidian 仓库时，自动把博客子目录推送到 blog 仓库的相应路径，因为远程仓库都在 GitHub，实现用 [GitHub actions](https://docs.github.com/en/actions)。
 
 ## 过程
-需求并不复杂，在本地实现无非是复制一下再 push。
-然而事实上我花了半天时间 ~~with chatGPT together~~
+需求并不复杂，在本地实现无非是复制一下再 push。  
+然而事实上我花了半天时间 ~~with chatGPT together~~。  
 我对 `GitHub actions` 只是了解，不过之前有写过简单的 `Jenkins pipeline`，想着上手不会很难。
+
 ### 初步实现
 很快啊，就~~在 GPT 的帮助下~~实现了一版，步骤如下
 ```yml
@@ -63,12 +64,14 @@ em小问题，可能是 token 没配好🤔。
 * 反复配置仓库 `secrets`和 `actions`
 * 修改 actions 的权限和推送步骤的实现方式
 * 遍历 GitHub 文档
+
 甚至把 blog 仓库的依赖机器人都去掉了，就因为它名字有个 `bot`😇
 
-终于终于，在 [github-push-action](https://github.com/ad-m/github-push-action)里找到一个 [issue](https://github.com/ad-m/github-push-action/issues/44#issuecomment-581706892)。checkout 的时候用了默认的 GITHUB_TOKEN，并且提交历史也不完整。
+终于终于，在[github-push-action](https://github.com/ad-m/github-push-action)里找到一个 [issue](https://github.com/ad-m/github-push-action/issues/44#issuecomment-581706892)。  
+原来真正的原因是 checkout 的时候用了默认的 GITHUB_TOKEN，并且提交历史也不完整。
 
 ## 优化
-到这里，我已经实现了同步仓库的功能。但是如果我同步 Obsidian 仓库的时候没有对博客子目录进行修改，就不用推送到 blog 仓库。
+到这里，我已经实现了同步仓库的功能。但是如果我同步 Obsidian 仓库的时候没有对博客子目录进行修改，就不用推送到 blog 仓库。  
 用 `git diff`和环境变量进行实现，完整`GitHub actions`文件如下
 ```yml
 name: Sync Blog
@@ -76,7 +79,6 @@ on:
   push:
     branches:
       - main
-  
 
 jobs:
   sync:
@@ -133,4 +135,4 @@ jobs:
 
 
 ## 总结
-没有仔细考虑`checkout`部分的问题，对于不太熟悉的东西有点依赖 GPT ，排查的时候用了不少的时间去尝试它给出的方法，但是毫无起色😅
+`push` 失败的时候没有仔细考虑`checkout`部分的问题，对于不太熟悉的东西有点依赖 GPT ，排查的时候用了不少的时间去尝试它给出的方法，但是毫无起色😅
