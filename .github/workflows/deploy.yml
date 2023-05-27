@@ -27,7 +27,7 @@ jobs:
           cache: pnpm
         
       - uses: actions/configure-pages@v3
-      - run: pnpm i && pnpm build
+      - run: pnpm i && pnpm build --base /${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v1
         with:
           path: .vitepress/dist
