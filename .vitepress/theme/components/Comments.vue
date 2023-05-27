@@ -24,7 +24,7 @@ onContentUpdated(() => {
     repo: "blog-comments",
     owner: "cybzzz",
     admin: ["cybzzz"],
-    id: location.pathname, // Ensure uniqueness and length less than 50
+    id: decodeURI(location.pathname),
     language: "zh-CN",
     distractionFreeMode: true, // Facebook-like distraction free mode
   });
