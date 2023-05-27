@@ -42,7 +42,7 @@ async function config() {
     themeConfig: {
       // repo: "clark-cui/homeSite",
       logo: "https://api.iconify.design/svg-spinners:wind-toy.svg?color=%238ec4f5",
-      avator:'https://cybzzz.top/assets/image/avatar.jpg',
+      avator:'https://cdn.jsdelivr.net/gh/cybzzz/assets@main/image/avatar.jpg',
       search: {
         provider: 'local'
       },
