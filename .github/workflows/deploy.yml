@@ -27,7 +27,7 @@ jobs:
           cache: pnpm
         
       - uses: actions/configure-pages@v3
-      - run: pnpm i --frozen-lockfile && pnpm vitepress build --base /${{ github.event.repository.name }}/
+      - run: pnpm i && pnpm build
       - uses: actions/upload-pages-artifact@v1
         with:
           path: .vitepress/dist
